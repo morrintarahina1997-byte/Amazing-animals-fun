@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fff4df">
+<title>Amazing Animals Fun</title>
+<style>
+:root{--ink:#263238;--paper:#fffdf8;--peach:#ffcfad;--mint:#bdebd8;--yellow:#ffe58f;--purple:#d9ccff}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#fff4df;color:var(--ink)}
+header{text-align:center;padding:22px 14px 12px}h1{margin:0;font-size:clamp(1.7rem,6vw,2.5rem)}header p{margin:7px 0}
+main{max-width:900px;margin:auto;padding:12px}
+.panel{background:white;border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 4px 18px #59412612}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+button,select{font:inherit;border:2px solid #263238;border-radius:12px;padding:10px 14px;background:white;color:var(--ink);cursor:pointer}
+button:focus,select:focus{outline:3px solid #88cbb0}
+.primary{background:var(--yellow);font-weight:700}.palette{width:42px;height:42px;border:2px solid #263238;border-radius:50%;padding:0}
+.palette[aria-pressed=true]{outline:4px solid #88cbb0;outline-offset:2px}
+#art{display:block;width:100%;max-width:520px;height:auto;margin:12px auto;background:#fff;border:2px solid #263238;border-radius:16px;touch-action:manipulation}
+#art [data-region]{stroke:#263238;stroke-width:4;stroke-linejoin:round;cursor:pointer}
+#art [data-region]:focus{outline:none;stroke:#e36b4a;stroke-width:7}
+.hint{text-align:center;font-size:.95rem}.note{font-size:.9rem;color:#4b5960}
+footer{text-align:center;padding:20px;font-size:.85rem}
+@media print{body{background:white}header,.controls,.note,.money,footer{display:none!important}.panel{box-shadow:none;padding:0}#art{max-height:90vh;border:0}}
+</style>
+</head>
+<body>
+<header>
+  <h1>🐾 Amazing Animals Fun</h1>
+  <p>Pick an animal, choose a colour, and tap the picture!</p>
+</header>
+<main>
+  <section class="panel controls">
+    <div class="row">
+      <label for="animal"><strong>Choose an animal:</strong></label>
+      <select id="animal" aria-label="Choose an animal">
+        <option value="lion">Happy Lion</option><option value="fish">Little Fish</option><option value="butterfly">Butterfly</option>
+      </select>
+    </div>
+    <div class="row" style="margin-top:16px" aria-label="Colour palette">
+      <button class="palette" style="background:#ffb347" data-color="#ffb347" aria-label="Orange" aria-pressed="true"></button>
+      <button class="palette" style="background:#ff7777" data-color="#ff7777" aria-label="Red" aria-pressed="false"></button>
+      <button class="palette" style="background:#ffe66d" data-color="#ffe66d" aria-label="Yellow" aria-pressed="false"></button>
+      <button class="palette" style="background:#79d6a3" data-color="#79d6a3" aria-label="Green" aria-pressed="false"></button>
+      <button class="palette" style="background:#75c9ff" data-color="#75c9ff" aria-label="Blue" aria-pressed="false"></button>
+      <button class="palette" style="background:#c6a2ff" data-color="#c6a2ff" aria-label="Purple" aria-pressed="false"></button>
+      <button class="palette" style="background:#ffb8d2" data-color="#ffb8d2" aria-label="Pink" aria-pressed="false"></button>
+      <button class="palette" style="background:#ffffff" data-color="#ffffff" aria-label="White" aria-pressed="false"></button>
+    </div>
+    <p class="hint">Tap any part of the picture to colour it.</p>
+    <div class="row">
+      <button id="reset">↻ Start again</button>
+      <button id="print" class="primary">🖨️ Print / Save as PDF</button>
+    </div>
+  </section>
+  <section class="panel">
+    <svg id="art" viewBox="0 0 400 400" role="img" aria-label="Animal colouring picture"></svg>
+    <p class="hint">Great job, little artist! ⭐</p>
+  </section>
+  <section class="panel money">
+    <h2>Printable activity packs</h2>
+    <p>Future shop idea: sell extra printable animal colouring pages and activity packs for parents to print at home.</p>
+    <p class="note"><strong>Not connected to payments yet.</strong> First, test the free colouring app and create a small printable pack. Add a real shop link only after you have a product and a safe way for adults to purchase it.</p>
+  </section>
+  <section class="panel">
+    <h2>For parents</h2>
+    <p class="note">This starter app works on your device and does not ask for a child's name, location, or account. It contains no ads or payment collection.</p>
+  </section>
+</main>
+<footer>Made with care by Amazing Animals Studio · Starter version</footer>
+<script>
+const art=document.getElementById('art'), animal=document.getElementById('animal');
+let selected='#ffb347';
+const drawings={
+lion:`<g data-region fill="#fff"><path d="M200 42 L225 62 255 55 267 84 296 98 289 128 314 150 296 178 309 207 282 228 281 258 250 266 230 291 200 281 170 291 150 266 119 258 118 228 91 207 104 178 86 150 111 128 104 98 133 84 145 55 175 62Z"/><ellipse data-region cx="200" cy="178" rx="79" ry="83"/><ellipse data-region cx="155" cy="145" rx="18" ry="24"/><ellipse data-region cx="245" cy="145" rx="18" ry="24"/><ellipse data-region cx="200" cy="194" rx="53" ry="42"/><ellipse data-region cx="170" cy="166" rx="9" ry="12"/><ellipse data-region cx="230" cy="166" rx="9" ry="12"/><path d="M190 187 Q200 178 210 187 L200 198Z" fill="#263238"/><path d="M200 198 Q194 214 180 207 M200 198 Q206 214 220 207" fill="none"/><path d="M140 198 L105 191 M140 210 L104 218 M260 198 L295 191 M260 210 L296 218" fill="none"/><path d="M155 108 Q200 82 245 108" fill="none"/></g>`,
+fish:`<g data-region fill="#fff"><path d="M72 200 Q125 112 236 150 Q275 164 300 200 Q275 236 236 250 Q125 288 72 200Z"/><path data-region d="M287 200 L352 145 343 200 352 255Z"/><path data-region d="M166 143 Q190 98 225 135Z"/><path data-region d="M166 257 Q190 302 225 265Z"/><ellipse data-region cx="128" cy="183" rx="16" ry="18"/><circle cx="132" cy="184" r="6" fill="#263238"/><path d="M88 215 Q105 229 122 217" fill="none"/><path data-region d="M180 164 Q202 200 180 236 Q218 229 229 200 Q218 171 180 164Z"/><path d="M218 175 Q235 200 218 225 M246 174 Q263 200 246 226" fill="none"/></g>`,
+butterfly:`<g data-region fill="#fff"><path data-region d="M190 180 Q125 80 62 116 Q35 160 92 207 Q45 246 82 282 Q137 300 190 222Z"/><path data-region d="M210 180 Q275 80 338 116 Q365 160 308 207 Q355 246 318 282 Q263 300 210 222Z"/><ellipse data-region cx="200" cy="205" rx="18" ry="66"/><circle data-region cx="200" cy="124" r="24"/><path d="M190 104 Q168 73 156 82 M210 104 Q232 73 244 82" fill="none"/><ellipse data-region cx="111" cy="163" rx="19" ry="25"/><ellipse data-region cx="286" cy="163" rx="19" ry="25"/><ellipse data-region cx="111" cy="250" rx="17" ry="19"/><ellipse data-region cx="286" cy="250" rx="17" ry="19"/><path d="M192 180 L180 204 M208 180 L220 204" fill="none"/></g>`
+};
+function render(){art.innerHTML=drawings[animal.value]; art.querySelectorAll('[data-region]').forEach(el=>{el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label','Colour this part');el.addEventListener('click',()=>el.setAttribute('fill',selected));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.setAttribute('fill',selected)}})});}
+document.querySelectorAll('[data-color]').forEach(btn=>btn.addEventListener('click',()=>{selected=btn.dataset.color;document.querySelectorAll('[data-color]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)))}));
+animal.addEventListener('change',render);document.getElementById('reset').addEventListener('click',render);document.getElementById('print').addEventListener('click',()=>window.print());render();
+</script>
+</body>
+</html>
